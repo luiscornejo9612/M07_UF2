@@ -1,7 +1,11 @@
 <?php
 
+use App\Http\Controllers\loginController;
 use App\Http\Controllers\SignController;
+use GuzzleHttp\Psr7\Request;
 use Illuminate\Support\Facades\Route;
+use PharIo\Manifest\Email;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -35,3 +39,25 @@ Route::get('/sign/signin/{inici}/{secion}/{de}/{usuari}', [SignController::class
 
 Route::get('/sign/signup/{creacio}/{usuari}/{nom}', [SignController::class, 'signup']);
 
+
+
+Route::post('/login', [loginController::class, 'login']);
+
+
+Route::get('/error', function (){
+    return "Error d’accés";
+}) -> name ('errorAcces.index');
+
+
+
+
+// Route::post('/login', function(){
+// $email = Request('email');
+// $password = Request('password');
+// return `El meu Email es`. $email . 'y el password es'. $password;
+// });
+
+// Route::post('/login', function(){
+//     $email = 'luisalvarado338@gmail.com';
+//     return view('login.alumne')-> with('variable', `hola`);
+// }) -> name('user');
