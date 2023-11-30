@@ -15,6 +15,11 @@ class loginMiddleware
      */
     public function handle(Request $request, Closure $next): Response
     {
-        return $next($request);
+        if($request -> email != null && $request -> password != null){
+            return $next($request);
+        }
+        else{
+            return redirect('/error');
+        }
     }
 }

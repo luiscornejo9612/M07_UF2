@@ -41,7 +41,7 @@ Route::get('/sign/signup/{creacio}/{usuari}/{nom}', [SignController::class, 'sig
 
 
 
-Route::post('/login', [loginController::class, 'login']);
+Route::post('/login', [loginController::class, 'login'])->middleware('test');
 
 
 Route::get('/error', function (){

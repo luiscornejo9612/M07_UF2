@@ -9,6 +9,8 @@ class loginController extends Controller
     public function login(){
         $email = request('email');
         $password = request('password');
-        return view('login.alumne') -> with('email', $email);
+        return view('login.alumne') 
+        -> with('email', $email)
+        -> with('password', $password);
     }
 }
