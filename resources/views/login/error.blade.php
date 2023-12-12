@@ -6,8 +6,7 @@
     <title>Document</title>
 </head>
 <body>
-<p>Benvingut alunme. El teu email és {{$email}}</p>
-<p>Y el teu password és {{$password}}</p>
-    <a href="/sigin"> Tornar </a>
+    <h1>“Error de acceso”</h1>
+    <a href="/sigin"> Volver </a>
 </body>
 </html>

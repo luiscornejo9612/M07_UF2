@@ -18,7 +18,7 @@ use PharIo\Manifest\Email;
 |
 */
 
-Route::get('/', function () {
+/*Route::get('/', function () {
     return view('welcome');
 });
 
@@ -38,16 +38,28 @@ Route::get('/sign/signup/{p1}', function ($p1) {
 Route::get('/sign/signin/{inici}/{secion}/{de}/{usuari}', [SignController::class, 'signin']);
 
 Route::get('/sign/signup/{creacio}/{usuari}/{nom}', [SignController::class, 'signup']);
+*/
 
 
+/*Route::get('/login', function(){
 
+});*/
+
+
+//PRÁCTICA 2 VISTES
 Route::post('/login', [loginController::class, 'login'])->middleware('test');
+Route::get('/errorAcces',[loginController::class, 'error']) ->name('errorAcces');
 
-
-Route::get('/error', function (){
+/*Route::get('/error', function (){
     return "Error d’accés";
 }) -> name ('errorAcces.index');
+*/
 
+
+//PRÁCTICA 3 VISTES
+Route::get('/sigin', [SignController::class, 'signInPractica3'])->name('sigin');
+Route::get('/sigup', [SignController::class, 'signUpPractica3'])->name('sigup');
+Route::post('/mostrarInfo', [loginController::class, 'datosUser']) -> middleware('test');
 
 
 

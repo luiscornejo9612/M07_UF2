@@ -6,8 +6,11 @@
     <title>Document</title>
 </head>
 <body>
-<p>Benvingut alunme. El teu email és {{$email}}</p>
-<p>Y el teu password és {{$password}}</p>
-    <a href="/sigin"> Tornar </a>
+    <h1>Datos del usuario:</h1>
+    <p>Nom: {{$nom}}</p>
+    <p>Cognom: {{$cognom}}</p>
+    <p>Email: {{$email}}</p>
+    <p>Password: {{$password}}</p>
+    <a href="/sigin">Iniciar sesion</a>
 </body>
 </html>
