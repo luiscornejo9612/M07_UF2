@@ -1,13 +1,16 @@
+<!-- En tu archivo de vista (por ejemplo, usuarios/editar.blade.php o editar.html) -->
+
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Editar Usuario</title>
 </head>
 <body>
-<h1> Crea tu usuario </h1>
-    <form action="/mostrarInfo" method="post">
+
+    <h1>Editar Usuario</h1>
+    <form action="/actualizar" method="post">
         <label for = "id">id </label>
         <input type="text" name="id">
         <br>
@@ -23,18 +26,8 @@
         <label for = "password">password </label>
         <input type="password" name="password">        
         <br>
-        <label for="rol"> Rol </label>
-        <select name="rol">
-            <option value="Professor">Professor</option>
-            <option value="Alumne">Alumne</option>
-            <option value="admin">Admin</option>
-        </select>
-        <br>
-        <label for="actiu"> Activo </label>
-        <input type="checkbox" name="actiu">
-        <br>            
-        <input type="submit" value="Enviar">   
-    </form> 
-    <a href="/sigin"> Iniciar sesión</a>
+        <button type="submit">Actualizar Usuario</button>
+    </form>
+
 </body>
 </html>

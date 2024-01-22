@@ -18,27 +18,26 @@ use PharIo\Manifest\Email;
 |
 */
 
-/*Route::get('/', function () {
+Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/getName', function () {
-    return "HELLO WORD";
-});
+// Route::get('/getName', function () {
+//     return "HELLO WORD";
+// });
 
-Route::get('/hola/{id}', function ($id) {
-    return "Hello".$id;
-});
+// Route::get('/hola/{id}', function ($id) {
+//     return "Hello".$id;
+// });
 
 
-Route::get('/sign/signup/{p1}', function ($p1) {
-    return "Hola ".$p1;
-});
+// Route::get('/sign/signup/{p1}', function ($p1) {
+//     return "Hola ".$p1;
+// });
 
-Route::get('/sign/signin/{inici}/{secion}/{de}/{usuari}', [SignController::class, 'signin']);
+// Route::get('/sign/signin/{inici}/{secion}/{de}/{usuari}', [SignController::class, 'signin']);
 
-Route::get('/sign/signup/{creacio}/{usuari}/{nom}', [SignController::class, 'signup']);
-*/
+// Route::get('/sign/signup/{creacio}/{usuari}/{nom}', [SignController::class, 'signup']);
 
 
 /*Route::get('/login', function(){
@@ -61,8 +60,9 @@ Route::get('/sigin', [SignController::class, 'signInPractica3'])->name('sigin');
 Route::get('/sigup', [SignController::class, 'signUpPractica3'])->name('sigup');
 Route::post('/mostrarInfo', [loginController::class, 'datosUser']) -> middleware('test');
 
-
-
+Route::get('/edit/{id}', [loginController::class, 'edit'])->name('edit');
+Route::post('/actualizar', [loginController::class, 'actualizar'])->name('actualizar');
+Route::delete('/delete/{id}', [loginController::class, 'delete'])->name('delete');
 // Route::post('/login', function(){
 // $email = Request('email');
 // $password = Request('password');
