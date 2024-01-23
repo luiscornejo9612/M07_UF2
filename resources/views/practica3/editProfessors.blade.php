@@ -6,27 +6,27 @@
     <title>Editar Usuario</title>
 </head>
 <body>
-    <h1>Editar Usuario</h1>
-    <form method="POST" action="/updateAlumnes/{{$alumno->id}}" >
+    <h1>Editar Usuario profesor</h1>
+    <form method="POST" action="/updateProfessor/{{$professor->id}}" >
     @method('put')
     @csrf
 
         <br>
         <label for = "nom">nom </label>
-        <input type="text" name="nom" value="{{$alumno->nom}}">
+        <input type="text" name="nom" value="{{$professor->nom}}">
         <br>
         <label for = "cognom">cognom </label>
-        <input type="text" name="cognom" value="{{$alumno->cognom}}">
+        <input type="text" name="cognom" value="{{$professor->cognom}}">
         <br>
         <label for = "email">email </label>
-        <input type="email" name="email" value="{{$alumno->email}}">
+        <input type="email" name="email" value="{{$professor->email}}">
         <br>
         <label for = "password">password </label>
-        <input type="password" name="password" value="{{$alumno->password}}">        
+        <input type="password" name="password" value="{{$professor->password}}">        
         <br>
         <label for="rol"> Rol </label>
         <select name="rol" >
-            <option value="Professor">Professor</option>
+            <option value="professor">Professor</option>
             <option value="Alumne">Alumne</option>
             <option value="admin">Admin</option>
         </select>

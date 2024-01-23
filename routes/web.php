@@ -5,6 +5,7 @@ use App\Http\Controllers\SignController;
 use GuzzleHttp\Psr7\Request;
 use Illuminate\Support\Facades\Route;
 use PharIo\Manifest\Email;
+use App\Models\Usuaris;
 
 
 /*
@@ -54,15 +55,32 @@ Route::get('/errorAcces',[loginController::class, 'error']) ->name('errorAcces')
 }) -> name ('errorAcces.index');
 */
 
-
+//hola
 //PRÁCTICA 3 VISTES
 Route::get('/sigin', [SignController::class, 'signInPractica3'])->name('sigin');
 Route::get('/sigup', [SignController::class, 'signUpPractica3'])->name('sigup');
-Route::post('/mostrarInfo', [loginController::class, 'datosUser']) -> middleware('test');
+Route::post('/mostrarInfo', [loginController::class, 'singup']) -> middleware('test');
 
-Route::get('/edit/{id}', [loginController::class, 'edit'])->name('edit');
-Route::post('/actualizar', [loginController::class, 'actualizar'])->name('actualizar');
-Route::delete('/delete/{id}', [loginController::class, 'delete'])->name('delete');
+//CRUD alumnes
+Route::get('/editAlumnes/{id}', [loginController::class, 'editAlumnes'])->name('editAlumnes');
+Route::put('/updateAlumnes/{id}', [loginController::class, 'updateAlumnes'])->name('updateAlumnes');
+Route::delete('/deleteAlumnes/{id}', [loginController::class, 'deleteAlumnes'])->name('deleteAlumnes');
+Route::get('/añadirUserAlumne', [loginController::class, 'añadirUserAlumne'])->name('añadirUserAlumnes');
+Route::post('/añadirAlumnes', [loginController::class, 'añadirAlumnes'])->name('añadirAlumnes');
+
+
+//CRUD professors
+Route::get('/editProfessor/{id}', [loginController::class, 'editProfessor'])->name('editProfesso');
+Route::put('/updateProfessor/{id}', [loginController::class, 'updateProfessor'])->name('updateProfessor');
+Route::delete('/deleteProfessor/{id}', [loginController::class, 'deleteProfessor'])->name('deleteProfessor');
+Route::get('/añadirUser', [loginController::class, 'añadirUser'])->name('añadirUser');
+Route::post('/añadirProfessor', [loginController::class, 'añadirProfessor'])->name('añadirProfessor');
+
+
+
+
+
+
 // Route::post('/login', function(){
 // $email = Request('email');
 // $password = Request('password');

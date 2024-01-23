@@ -5,7 +5,7 @@ use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
 use function Laravel\Prompts\password;
-
+//hola
 return new class extends Migration
 {
     /**

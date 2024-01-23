@@ -61,56 +61,143 @@ class loginController extends Controller
         // }
     }
 
-    public function edit($id)
+
+    public function editAlumnes($id)
     {
-        return view('practica3.edit');
+        $usuario = Usuaris::find($id);
+        return view('practica3.edit')->with('alumno', $usuario);
     }
 
-    public function actualizar()
+    public function updateAlumnes(Request $request, $id)
     {
-        // Obtener los valores del formulario
-        $id = Request('id');
-        $nom = Request('nom');
-        $cognom = Request('cognom');
-        $email = Request('email');
-        $password = Request('password');
-
-        // Buscar al usuario por su ID
         $usuario = Usuaris::find($id);
+        // Actualizar los valores del usuario
+        $usuario->nom =  $request->input('nom');
+        $usuario->cognom = $request->input('cognom');
+        $usuario->email = $request->input('email');
+        $usuario->password =  $request->input('password');
+        $usuario->rol = $request->input('rol');
+
+        // Guardar los cambios en la base de datos
+        $usuario->save();
+
+        $alumnes = Usuaris::where('rol', 'alumne')->get();
+
+        // Redirigir a alguna vista o ruta después de la actualización
+        return view('login.professor')->with('alumnes', $alumnes);
+    }
+
+    public function deleteAlumnes($id)
+    {
+        $usuario = Usuaris::find($id);
+        $usuario->delete();
+        $alumnes = Usuaris::where('rol', 'alumne')->get();
+
+        return view('login.professor')->with('alumnes', $alumnes);
+    }
+
+    public function añadirUserAlumne()
+    {
+        return view('login.añadirUserAlumne');
+    }
+
+    public function añadirAlumnes()
+    {
+        
+        $id = request('id');
+        $nom = request('nom');
+        $cognom = request('cognom');
+        $email = request('email');
+        $password = request('password');
+        $rol = request('rol');
+
+        
+
+        Usuaris::create([
+            'id' => $id,
+            'nom' => $nom,
+            'cognom' => $cognom,
+            'email' => $email,
+            'password' => $password,
+            'rol' => $rol,
+        ]);
+
+        $alumnes = Usuaris::where('rol', 'alumne')->get();
+        return view('login.professor')
+            ->with('alumnes', $alumnes);
+    }
+
+/*<----------------------------------------------------------------------------------------------->*/
+
+
+    public function editProfessor($id)
+    {
+        $usuario = Usuaris::find($id);
+        return view('practica3.editProfessors')->with('professor', $usuario);
+    }
+
+    public function updateProfessor(Request $request, $id)
+    {
+
+        $usuario = Usuaris::find($id);
+        // Actualizar los valores del usuario
+        $usuario->nom =  $request->input('nom');
+        $usuario->cognom = $request->input('cognom');
+        $usuario->email = $request->input('email');
+        $usuario->password =  $request->input('password');
+        $usuario->rol = $request->input('rol');
+
+        // Guardar los cambios en la base de datos
+        $usuario->save();
+
+        $profesor = Usuaris::where('rol', 'professor')->get();
+        // Redirigir a alguna vista o ruta después de la actualización
+        return view('login.centre')->with('professors', $profesor);
+    }
+
+    public function deleteProfessor($id)
+    {
+        $usuario = Usuaris::find($id);
+        $usuario->delete();
+        $profesor = Usuaris::where('rol', 'professor')->get();
+
+        return view('login.centre')->with('professors', $profesor);
+    }
+
+    public function añadirUser()
+    {
+        return view('login.añadirUser');
+    }
+
+    public function añadirProfessor()
+    {
+        
+        $id = request('id');
+        $nom = request('nom');
+        $cognom = request('cognom');
+        $email = request('email');
+        $password = request('password');
+        $rol = request('rol');
+
+        
+
+        Usuaris::create([
+            'id' => $id,
+            'nom' => $nom,
+            'cognom' => $cognom,
+            'email' => $email,
+            'password' => $password,
+            'rol' => $rol,
+        ]);
+
         $professors = Usuaris::where('rol', 'professor')->get();
 
-        // Verificar si el usuario existe
-        if ($usuario) {
-            // Actualizar los valores del usuario
-            $usuario->nom = $nom;
-            $usuario->cognom = $cognom;
-            $usuario->email = $email;
-            $usuario->password = $password;
-
-            // Guardar los cambios en la base de datos
-            $usuario->save();
-
-            // Redirigir a alguna vista o ruta después de la actualización
-            return view('login.centre')
-            ->with('email', $email)
+        return view('login.centre')
             ->with('professors', $professors);
-        } else {
-            // Manejar el caso en que el usuario no se encuentra
-            return redirect()->back()->with('error', 'Usuario no encontrado');
-        }
     }
 
-    public function delete($id)
-    {
-        $usuario = Usuaris::find($id);
-    
-        if ($usuario) {
-            $usuario->delete();
-            return redirect()->route('login.listaActualizada')->with('mensaje', 'Usuario eliminado correctamente');
-        } else {
-            return redirect()->back()->with('error', 'Usuario no encontrado');
-        }
-    }
+
+    /*<----------------------------------------------------------------------------------------------->*/
 
 
 
@@ -119,12 +206,24 @@ class loginController extends Controller
         return view('login.error');
     }
 
-    public function datosUser()
+    public function singup()
     {
+        $id = request('id');
         $nom = request('nom');
         $cognom = request('cognom');
         $email = request('email');
         $password = request('password');
+        $rol = request('rol');
+
+        Usuaris::create([
+            'id' => $id,
+            'nom' => $nom,
+            'cognom' => $cognom,
+            'email' => $email,
+            'password' => $password,
+            'rol' => $rol,
+
+        ]);
 
         return view('practica3.mostrarInfo')->with([
             'nom' => $nom,
@@ -133,4 +232,7 @@ class loginController extends Controller
             'password' => $password
         ]);
     }
+
+
+    
 }
